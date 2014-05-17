@@ -139,7 +139,7 @@ class String
         {
             foreach( str_split( $exclude ) as $char )
             {
-                $str = OSS_String::mb_str_replace( $char, '', $str );
+                $str = self::mb_str_replace( $char, '', $str );
             }
         }
 
@@ -295,7 +295,7 @@ class String
         $retArr = array();
 
         for( $x = 1; $x <= 6; $x++ )
-            $retArr[] = OSS_String::random( 2, false, false, false, '0123456789abcdef', '' );
+            $retArr[] = self::random( 2, false, false, false, '0123456789abcdef', '' );
 
         $retVal = implode( ':', $retArr );
 
