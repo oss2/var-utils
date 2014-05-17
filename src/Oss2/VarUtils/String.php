@@ -214,6 +214,22 @@ class String
 
 
     /**
+     * Create a token of a given length
+     *
+     * Uses MD5 on the current microtime.
+     *
+     * @param int $length The length of the token  (max 32)
+     * @return string
+     */
+    public function createToken( $length = 8 )
+    {
+        return strtoupper( substr( str_shuffle( md5( microtime( true ) ) ), 0, $length ) );
+    }
+
+
+
+
+    /**
     * Removes any diacritic, accent and combining characters from the string.
     *
     * These settings should be set for working results:
