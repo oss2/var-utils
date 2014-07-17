@@ -38,7 +38,7 @@ namespace Oss2\VarUtils;
  * @copyright  Copyright (c) 2007 - 2014, Open Source Solutions Limited, Dublin, Ireland
  * @license    http://www.opensolutions.ie/licenses/new-bsd New BSD License
  */
-class Array
+class ArrayType
 {
 
     /**
