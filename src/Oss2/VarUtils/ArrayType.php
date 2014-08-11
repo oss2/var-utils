@@ -210,27 +210,24 @@ class ArrayType
     {
         $retVal = array();
 
-        if( ( is_array( $array ) == false ) || ( sizeof( $array ) == 0 ) )
+        if( !is_array( $array ) || !sizeof( $array ) )
             return array();
 
         foreach( $array as $result )
-            $retVal[] = $result[$pFieldName];
+            $retVal[] = $result[ $fieldName ];
 
-        if( $unique == true )
+        if( $unique )
             $retVal = array_unique( $retVal );
 
-        if( $removeNull == true)
+        if( $removeNull )
         {
             foreach( $retVal as $retValKey => $retValValue )
-            {
                 if( $retValValue === null )
-                    unset( $retVal[$retValKey] );
-            }
+                    unset( $retVal[ $retValKey ] );
         }
 
         return $retVal;
     }
-
 
 
     /**
@@ -241,21 +238,21 @@ class ArrayType
     * @param string $pattern pattern for filter
     * @return array
     */
-    public static function removeFields( $array, $pattern)
+    public static function removeFields( $array, $pattern )
     {
-        if(  ( is_array( $array ) == false ) || ( sizeof( $array ) == 0 ) )
+        if( !is_array( $array ) || !sizeof( $array ) )
             return $array;
 
-        foreach( $array as $arrKey => $arrValue)
+        foreach( $array as $arrKey => $arrValue )
         {
             if( preg_match( "/{$pattern}/ui", $arrKey ) != 0 )
             {
-                unset( $array[$arrKey] );
+                unset( $array[ $arrKey ] );
                 continue;
             }
 
-            if( is_array( $array[$arrKey] ) == true )
-                $array[$arrKey] = self::removeFields( $array[$arrKey], $pattern );
+            if( is_array( $array[$arrKey] ) )
+                $array[$arrKey] = self::removeFields( $array[ $arrKey ], $pattern );
         }
 
         return $array;
@@ -287,7 +284,7 @@ class ArrayType
     */
     public static function changeValues( array &$array, array $fromToArray)
     {
-        if( ( is_array( $array ) == true ) && ( sizeof( $array ) >��0 ) )
+        if( is_array( $array ) && sizeof( $array ) )
             array_walk_recursive( $array, array( 'OSS_Array', 'cavCallback' ), $fromToArray );
     }
 
@@ -300,10 +297,10 @@ class ArrayType
     */
     public static function objectToArray( $object )
     {
-        if( ( is_object( $object ) == false ) && ( is_array( $object ) == false ) )
-            return $pObject;
+        if( !is_object( $object ) && !is_array( $object ) )
+            return $object;
 
-        if( is_object( $object ) == true )
+        if( is_object( $object ) )
             $object = get_object_vars( $object );
 
         if( sizeof( $object ) == 0 )
