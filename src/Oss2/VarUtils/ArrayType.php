@@ -210,16 +210,16 @@ class ArrayType
     {
         $retVal = array();
 
-        if( ( is_array( $array ) == false ) || ( sizeof( $array ) == 0 ) )
+        if( !is_array( $array ) || !sizeof( $array ) )
             return array();
 
         foreach( $array as $result )
-            $retVal[] = $result[$pFieldName];
+            $retVal[] = $result[$fieldName];
 
-        if( $unique == true )
+        if( $unique )
             $retVal = array_unique( $retVal );
 
-        if( $removeNull == true)
+        if( $removeNull )
         {
             foreach( $retVal as $retValKey => $retValValue )
             {
