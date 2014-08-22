@@ -214,7 +214,7 @@ class ArrayType
             return array();
 
         foreach( $array as $result )
-            $retVal[] = $result[ $fieldName ];
+            $retVal[] = $result[$fieldName];
 
         if( $unique )
             $retVal = array_unique( $retVal );
